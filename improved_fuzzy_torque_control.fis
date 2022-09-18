@@ -1,0 +1,49 @@
+[System]
+Name='improved_fuzzy_torque_control'
+Type='mamdani'
+Version=2.0
+NumInputs=2
+NumOutputs=1
+NumRules=9
+AndMethod='min'
+OrMethod='max'
+ImpMethod='min'
+AggMethod='max'
+DefuzzMethod='centroid'
+
+[Input1]
+Name='e'
+Range=[-1 1]
+NumMFs=3
+MF1='N':'trapmf',[-1 -1 -0.2 0]
+MF2='Z':'trimf',[-0.2 0 0.2]
+MF3='P':'trapmf',[0 0.2 1 1]
+
+[Input2]
+Name='e_dot'
+Range=[-1 1]
+NumMFs=3
+MF1='Z':'trimf',[-0.8 0 0.8]
+MF2='N':'trapmf',[-1 -1 -0.8 0]
+MF3='P':'trapmf',[0 0.8 1 1]
+
+[Output1]
+Name='torque'
+Range=[-1 1]
+NumMFs=5
+MF1='NB':'trimf',[-1 -1 -0.1]
+MF2='PB':'trimf',[0.1 1 1]
+MF3='N':'trimf',[-1 -0.1 0]
+MF4='Z':'trimf',[-0.1 0 0.1]
+MF5='P':'trimf',[0 0.1 1]
+
+[Rules]
+1 2, 1 (1) : 1
+1 1, 3 (1) : 1
+1 3, 4 (1) : 1
+2 2, 3 (1) : 1
+2 1, 4 (1) : 1
+2 3, 5 (1) : 1
+3 2, 4 (1) : 1
+3 1, 5 (1) : 1
+3 3, 2 (1) : 1
