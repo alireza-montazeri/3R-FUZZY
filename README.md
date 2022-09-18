@@ -1,0 +1,2 @@
+# Control 3R robot with FUZZY controller
+In this project, a three-degree-of-freedom robot with rotating joints has been investigated. Two PID and Fuzzy controllers are designed for this robot, which is used to control the torque of the motors. The purpose of this controller is to track the specified path to the endpoint location of the robot. Two controllers designed to implement and compare the results are simulated in MATLAB Simulink software.
